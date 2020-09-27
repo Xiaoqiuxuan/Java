@@ -1,4 +1,4 @@
-package 郑未.位运算;
+package com.an
 
 import java.util.Random;
 
@@ -15,12 +15,12 @@ public class FindOnlyNum {
     private final static int N = 11;
 
     public static void f(int[] arr){
-        // 利用辅助元素即可
+        // 利用辅助元素即可，对辅助元素求异或
         int res = 1;
         for (int i = 2; i < N; i++) {
             res ^= i;
         }
-
+        // 根据上述异或得到的值，对数组种的每一个元素求异或值。
         for (int i = 0; i < arr.length; i++) {
             res ^=  arr[i];
         }
@@ -34,7 +34,6 @@ public class FindOnlyNum {
         }
         // 随机数，可以指定随机种子，每次生成都是同一个数。
         array[N-1] = new Random().nextInt(N-1)+1;
-
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i]+" ");
         }
@@ -42,10 +41,7 @@ public class FindOnlyNum {
         f(array);
     }
 
-
     public static void main(String[] args) {
         start();
     }
-
-
 }
