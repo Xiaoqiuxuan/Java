@@ -1,47 +1,33 @@
-package com.an
-
-import java.util.Random;
+package com.an;
 
 /**
- * 位运算的奇巧淫技
- *      1. 判断奇偶数
- *      2. 获取二进位是1还是0（两种解决方案）
- *      3. 交换两个整数变量
- *      4. 不用判断语句，求整数的绝对值
+ * 【题目】 找出落单的那个数
  *
- * 【题目】 找出唯一成对的数
+ * 一个数组里面除了一个数字外，其他的数字都出现了两次。
  */
 public class FindOnlyNum {
-    private final static int N = 11;
-
-    public static void f(int[] arr){
-        // 利用辅助元素即可，对辅助元素求异或
-        int res = 1;
-        for (int i = 2; i < N; i++) {
-            res ^= i;
+    /**
+     * 直接对所有元素求异或，相同的元素异或之后为0，0和任何数异或等于该数本身。
+     * @param array 给定的数组
+     * @return 
+     */
+    public static int findOnlyNum(int[] array){
+        if (array==null || array.length==0)
+            return Integer.MAX_VALUE;
+        int res = array[0];
+        for (int i = 1; i < array.length; i++) {
+            res ^= array[i];
         }
-        // 根据上述异或得到的值，对数组种的每一个元素求异或值。
-        for (int i = 0; i < arr.length; i++) {
-            res ^=  arr[i];
-        }
-        System.out.println(res);
+        return res;
     }
 
-    private static void start() {
-        int[] array = new int[N];
-        for (int i = 0; i < array.length; i++) {
-            array[i] = (i+1);
-        }
-        // 随机数，可以指定随机种子，每次生成都是同一个数。
-        array[N-1] = new Random().nextInt(N-1)+1;
-        for (int i = 0; i < array.length; i++) {
-            System.out.print(array[i]+" ");
-        }
-        System.out.println();
-        f(array);
+    public static void input(){
+        // 手工指定
+        int[] arr = {1,2,3,4,5,6,5,4,3,2,1};
+        System.out.println(findOnlyNum(arr));
     }
 
     public static void main(String[] args) {
-        start();
+        input();
     }
 }
